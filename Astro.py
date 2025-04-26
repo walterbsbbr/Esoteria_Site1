@@ -29,7 +29,9 @@ if not os.path.exists(FILE_PATH):
     else:
         print(f"❌ Falha ao baixar (código {response.status_code})")
 else:
-    print("✅ allCountries.txt já está presente.")PLANETAS = {
+    print("✅ allCountries.txt já está presente.")
+    
+    PLANETAS = {
     "☉": swe.SUN, "☽": swe.MOON, "☿": swe.MERCURY, "♀": swe.VENUS,
     "♂": swe.MARS, "♃": swe.JUPITER, "♄": swe.SATURN, "♅": swe.URANUS,
     "♆": swe.NEPTUNE, "♇": swe.PLUTO, "⚷": 15, "⚸": 12, "☊": swe.TRUE_NODE
