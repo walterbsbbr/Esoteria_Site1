@@ -100,8 +100,7 @@ def gerar_mapa(nome, data, hora, cidade):
         pos["ASC"] = asc
         pos["MC"] = mc
 
-        output_dir = "static/resultados"
-        os.makedirs(output_dir, exist_ok=True)
+        output_dir = "/tmp"
         filename = f"mapa_{normalizar(nome).replace(' ', '_')}.png"
         output_path = os.path.join(output_dir, filename)
         plotar_mapa(pos, casas, nome, data, output_path)
