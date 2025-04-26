@@ -1,5 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b481ef997d9c89fcb703a776253b95a7282c0e7956663eb2891de0f544fa8022
-size 14
+flask
 pyswisseph
 reportlab
+gunicorn
