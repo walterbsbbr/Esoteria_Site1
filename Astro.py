@@ -12,8 +12,24 @@ from matplotlib.table import Table
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 swe.set_ephe_path(os.path.join(BASE_DIR, "ephe"))
+# Caminho para allCountries.txt
+DATA_DIR = os.path.join(BASE_DIR, "data")
+FILE_PATH = os.path.join(DATA_DIR, "allCountries.txt")
+FILE_URL = "https://drive.google.com/uc?export=download&id=19IpEg4tvPOT7eBepdfCR__ExctE59TQy"
 
-PLANETAS = {
+# Garantir que o arquivo esteja presente
+if not os.path.exists(FILE_PATH):
+    print("🔽 Baixando allCountries.txt de Google Drive...")
+    os.makedirs(DATA_DIR, exist_ok=True)
+    response = requests.get(FILE_URL)
+    if response.status_code == 200:
+        with open(FILE_PATH, "wb") as f:
+            f.write(response.content)
+        print("✅ Download completo de allCountries.txt.")
+    else:
+        print(f"❌ Falha ao baixar (código {response.status_code})")
+else:
+    print("✅ allCountries.txt já está presente.")PLANETAS = {
     "☉": swe.SUN, "☽": swe.MOON, "☿": swe.MERCURY, "♀": swe.VENUS,
     "♂": swe.MARS, "♃": swe.JUPITER, "♄": swe.SATURN, "♅": swe.URANUS,
     "♆": swe.NEPTUNE, "♇": swe.PLUTO, "⚷": 15, "⚸": 12, "☊": swe.TRUE_NODE
