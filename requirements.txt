@@ -2,3 +2,4 @@ flask
 pyswisseph
 reportlab
 gunicorn
+pytz
