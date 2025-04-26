@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>I Ching - EsoterIA</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>☯️ I Ching</h1>
+
+    <form method="POST">
+        <button type="submit">Sortear Hexagrama</button>
+    </form>
+
+    {% if erro %}
+        <p style="color:red;"><strong>Erro:</strong> {{ erro }}</p>
+    {% endif %}
+
+    {% if resultado %}
+        <h2>
+            Hexagrama Primário {{ resultado.primario.numero }} – {{ resultado.primario.nome }}
+            <span style="font-size: 32px;">{{ resultado.primario.ideograma }}</span>
+            <span style="font-size: 18px; font-style: italic;">({{ resultado.primario.titulo }})</span>
+        </h2>
+
+        <h3>Linhas Sorteadas:</h3>
+        <pre style="font-size: 20px; font-family: Courier New;">
+{% for linha in resultado.linhas|reverse %}
+{{ "———" if linha in [7,9] else "— —" }}{{ "   o" if linha == 9 else "   x" if linha == 6 else "" }}
+{% endfor %}
+        </pre>
+
+        <h3>Moedas:</h3>
+        {% for trio in resultado.moedas|reverse %}
+        <div style="margin-bottom: 10px;">
+            {% for moeda in trio %}
+                <img src="{{ '/static/moedas/cara.png' if moeda == 3 else '/static/moedas/coroa.png' }}"
+                     style="height: 50px; margin: 5px;">
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <h3>Julgamento</h3>
+        <p>{{ resultado.primario.julgamento }}</p>
+
+        <h3>Imagem</h3>
+        <p>{{ resultado.primario.imagem }}</p>
+
+        <h3>Comentário</h3>
+        <p>{{ resultado.primario.comentario }}</p>
+
+        {% if resultado.linhas_mutantes_texto %}
+            <h3>Linhas Mutantes:</h3>
+            <ul>
+            {% for texto in resultado.linhas_mutantes_texto %}
+                <li>{{ texto }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2>
+            Hexagrama Resultante {{ resultado.resultante.numero }} – {{ resultado.resultante.nome }}
+            <span style="font-size: 32px;">{{ resultado.resultante.ideograma }}</span>
+            <span style="font-size: 18px; font-style: italic;">({{ resultado.resultante.titulo }})</span>
+        </h2>
+
+        <h3>Julgamento (Resultante)</h3>
+        <p>{{ resultado.resultante.julgamento }}</p>
+
+        <h3>Imagem (Resultante)</h3>
+        <p>{{ resultado.resultante.imagem }}</p>
+
+        <h3>Comentário (Resultante)</h3>
+        <p>{{ resultado.resultante.comentario }}</p>
+    {% endif %}
+
+    <p><a href="/">← Voltar ao início</a></p>
+</div>
+</body>
+</html>

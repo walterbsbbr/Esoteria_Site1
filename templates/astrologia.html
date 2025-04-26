@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa Astral - EsoterIA</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>🔮 Mapa Astral</h1>
+    <form method="POST">
+        <input name="nome" type="text" placeholder="Nome completo" required><br>
+        <input name="data" type="date" required><br>
+        <input name="hora" type="time" required><br>
+        <input name="cidade" type="text" placeholder="Cidade de nascimento" required><br><br>
+        <button type="submit">Gerar Mapa Astral</button>
+    </form>
+
+    {% if mapa_path %}
+        <h2>Resultado:</h2>
+        <img src="{{ mapa_path }}" alt="Mapa Astral" style="max-width: 600px;">
+        <p><a href="{{ mapa_path }}" download>📥 Baixar Mapa</a></p>
+    {% endif %}
+    <p><a href="/">← Voltar</a></p>
+</div>
+</body>
+</html>
