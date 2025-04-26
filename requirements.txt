@@ -3,3 +3,4 @@ pyswisseph
 reportlab
 gunicorn
 pytz
+numpy
