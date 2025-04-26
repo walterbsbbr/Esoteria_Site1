@@ -19,7 +19,11 @@ def astrologia():
         cidade = request.form['cidade']
         mapa_path = Astro.gerar_mapa(nome, data, hora, cidade)
     return render_template('astrologia.html', mapa_path=mapa_path)
-
+@app.route('/ver-mapa/<filename>')
+def ver_mapa(filename):
+    path = os.path.join("/tmp", filename)
+    return send_file(path, mimetype='image/png')
+    
 @app.route('/iching', methods=['GET', 'POST'])
 def iching():
     resultado = None
