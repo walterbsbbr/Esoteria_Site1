@@ -18,8 +18,9 @@
 
     {% if mapa_path %}
         <h2>Resultado:</h2>
-        <img src="{{ mapa_path }}" alt="Mapa Astral" style="max-width: 600px;">
-        <p><a href="{{ mapa_path }}" download>📥 Baixar Mapa</a></p>
+        {% set nome_arquivo = mapa_path.split('/')[-1] %}
+<img src="{{ url_for('ver_mapa', filename=nome_arquivo) }}" alt="Mapa Astral" style="max-width: 600px;">
+<p><a href="{{ url_for('ver_mapa', filename=nome_arquivo) }}" download>📥 Baixar Mapa</a></p>
     {% endif %}
     <p><a href="/">← Voltar</a></p>
 </div>
